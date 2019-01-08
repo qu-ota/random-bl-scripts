@@ -7,6 +7,10 @@ $remapName[$remapCount]		= "Toggle Rapidfire";
 $remapCmd[$remapCount]		= "rapidFirev2";
 $remapCount++;
 
+$remapName[$remapCount]		= "TOggle Alt Rapid Clicker";
+$remapCmd[$remapCount]		= "altRapidClick";
+$remapCount++;
+
 
 function rapidClick(%value)
 {
@@ -16,6 +20,17 @@ function rapidClick(%value)
 	{
 		cancel($RapidClick::Schedule);
 		mouseFire(0);
+	}
+}
+
+function altRapidClick(%value)
+{
+	if(%value)
+		altRapidClickFunc();
+	else
+	{
+		cancel($AltRapidClick::Schedule);
+		jet(0);
 	}
 }
 
@@ -35,6 +50,12 @@ function rapidClickFunc()
 	$mvTriggerCount0 = !$mvTriggerCount0;
 	commandToServer('activateStuff');
 	$RapidClick::Schedule = schedule(32,0,rapidClickFunc);
+}
+
+function altRapidClickFunc()
+{
+	$mvTriggerCount4 = !$mvTriggerCount4;
+	$AltRapidClick::Schedule = schedule(32,0,altRapidClickFunc);
 }
 
 function rapidFireFunc()
